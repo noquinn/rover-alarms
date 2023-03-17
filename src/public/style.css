@@ -1,0 +1,160 @@
+html, body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden;
+	position: fixed;
+	-webkit-text-size-adjust: none;
+}
+
+body > * {
+	font-size: 17px;
+	font-family: 'RobotoRegular', 'Droid Sans', 'Segoe UI', Segoe, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+}
+
+#alarm-list {
+	height: 100%;
+	flex: 1;
+	background-color: #f0f8ff;
+	overflow-y: scroll;
+}
+
+#alarm-info {
+	height: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+}
+
+#agency-name-display {
+	width: 100%;
+	padding: 6px;
+	background-color: #4682b4;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+}
+
+#details-cont {
+	flex: 1;
+	overflow-y: scroll;
+	overflow-wrap: break-word;
+}
+
+#details {
+	flex: 1;
+	min-height: 100.25%;
+}
+
+.details-end-filler {
+	width: 100%;
+	height: 84px;
+}
+
+.info-section-label {
+	background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 6px 14px;
+    flex: 1;
+}
+
+.address {
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+.map-btn {
+	color: #4682b4;
+}
+
+.alarm-info-cont {
+	margin: 17px;
+}
+
+.units-cont > table {
+	max-width: 450px;
+	width: 100%;
+	padding: 14px;
+}
+
+.narrative-item {
+	background-color: #fff;
+	color: black;
+	border-bottom: 1px solid #c0c0c0;
+	padding: 14px;
+}
+
+.alarm-list-item {
+	padding: 14px;
+	background-color: #fff;
+	border-top: 1px solid #c0c0c0;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+}
+
+.alarm-list-item:last-child {
+	border-bottom: 1px solid #c0c0c0;
+	margin-bottom: env(safe-area-inset-bottom);
+}
+
+.agency-timestamp-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.summary {
+	overflow-wrap: break-word;
+}
+
+#back-btn {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 12px;
+	width: 64px;
+	height: 64px;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+	background-color: steelblue;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+#back-btn > img {
+	width: 24px;
+	height: 24px;
+}
+
+@media only screen and (max-width: 800px) {
+	#alarm-list:not(.focus),
+	#alarm-info:not(.focus) {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 800px) {
+	#back-btn,
+	.details-end-filler {
+		display: none;
+	}
+	.selected {
+		background-color: #dcdcdc;
+	}
+	#alarm-list {
+		border-right: 1px solid #c0c0c0;
+	}
+}
+
+img {
+  pointer-events: none;
+}
