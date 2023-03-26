@@ -2,7 +2,7 @@ const portals = require('./portals.json');
 const express = require('express');
 const request = require('request');
 const xml2js = require('xml2js');
-const Database = require('@replit/database')
+const Database = require('@replit/database');
 
 const app = express();
 const lastAlarmEndpoint = process.env['LAST_ALARM_ENDPOINT'];
@@ -50,12 +50,12 @@ function formatAlarm(alarmData) {
 		'DispatchTime': 'Dispatch Time',
 		'Zone': 'Response Area',
 		'Problem': 'Problem',
+		'LocationName': 'Location',
 		'xXStreet': 'Cross Sts',
 		'IncidentNumber': 'Master Case',
 		'AgencyIncidentNumber': 'Agency Case',
 		'CallType': 'Call Type',
-		'CallerName': 'Caller Name',
-		'CallbackPhone': 'Callback Phone'
+		'CallerName': 'Caller Name'
 	};
 	const auxData = d.filter(x => x['Name'] in wantedAuxData).map(x => ({
 		name: wantedAuxData[x['Name']],
