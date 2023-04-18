@@ -10,10 +10,13 @@ const maxSavedAlarms = 50;
 const parser = new xml2js.Parser({ explicitArray: false });
 const db = new Database();
 
+if (!lastAlarmEndpoint) throw Error('Missing env var LAST_ALARM_ENDPOINT');
+
 function getLastAlarm(portalID) {
 	const url = `${lastAlarmEndpoint}?portalID=${portalID}`;
 	return new Promise((resolve, reject) => {
 		request(url, (error, response, body) => {
+			if (error) reject(error);
 			parser.parseString(body, (e, result) => {
 				resolve({agency: portals[portalID], ...formatAlarm(result)});
 			});
@@ -104,13 +107,17 @@ function updateAlarms() {
 						 .map(a => db.set(a.id, lastAlarms[a.id])),
 				db.set('gists', toSave)
 			]).then(() => {
-				console.log(`updated in ${Date.now() - start}ms`);
+				console.log(`updated alarms in ${Date.now() - start}ms`);
 			});
 		});
+	})
+	.catch(e => {
+		console.log('Failed to update alarms');
+		console.log(e);
 	});
 }
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/list', (req, res) => {
 	db.get('gists').then(gists => {
@@ -127,6 +134,7 @@ app.get('/alarm', (req, res) => {
 	});
 });
 
+updateAlarms();
 setInterval(updateAlarms, 60 * 1000);
 
 app.listen(3000, () => {
