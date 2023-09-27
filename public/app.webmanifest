@@ -1,0 +1,10 @@
+{
+	"name": "Rover Alarms",
+	"short_name": "Rover Alarms",
+	"icons": [],
+	"start_url": "index.html",
+	"background_color": "#005ead",
+	"display": "standalone",
+	"theme_color": "#005ead",
+	"description": ""
+}
